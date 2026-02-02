@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7861822b7ddf6ab468aaa6db6de680f7, type: 3}
-  m_Name: Item_Scissors
+  m_Name: SpecialItem_Dynamite
   m_EditorClassIdentifier: 
-  name: Scissors
-  description: Stainless Scissors
-  sprite: {fileID: 0}
+  name: Dynamite
+  description: I'll blow your mind!
+  sprite: {fileID: -1333953917612794466, guid: f3c43ed6556239145bf860c0fb187f84, type: 3}
   basePrice: 500

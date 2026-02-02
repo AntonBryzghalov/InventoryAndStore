@@ -24,7 +24,7 @@ namespace InventoryGame.UI
             _item = itemInfo;
 
             icon.sprite = _item.Sprite;
-            itemName.text = _item.Name;
+            itemName.text = _item.ItemName;
             if (itemDescription != null) itemDescription.text = _item.Description;
             if (itemPrice != null) itemPrice.text = _item.BasePrice.ToString();
         }

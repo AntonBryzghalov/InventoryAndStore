@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7861822b7ddf6ab468aaa6db6de680f7, type: 3}
   m_Name: BonusItem_DynamiteChanceIncreaser
   m_EditorClassIdentifier: 
-  name: Dynamite Chance Increaser
+  itemName: Dynamite Chance Increaser
   description: Do you want to be a winner or not?
   sprite: {fileID: 21300000, guid: 60d88fbfa9ce6974baff7c41190d5c84, type: 3}
   basePrice: 500

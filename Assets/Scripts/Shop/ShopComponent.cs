@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace InventoryGame.Shop
 {
-    public class Shop : MonoBehaviour
+    public class ShopComponent : MonoBehaviour
     {
         [SerializeField] private ItemView itemViewPrefab;
         [SerializeField] private ItemsSet itemsSet;

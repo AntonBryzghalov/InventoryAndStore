@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 namespace InventoryGame.Inventory
 {
     [CreateAssetMenu(fileName = "Inventory", menuName = "Inventory Game/Inventory")]
-    public class Inventory : ScriptableObject
+    public class InventorySO : ScriptableObject
     {
         [SerializeField] private List<InventoryItem> _items = new();
 

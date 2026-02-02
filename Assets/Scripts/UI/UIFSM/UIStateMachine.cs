@@ -31,7 +31,8 @@ namespace InventoryGame.UI.UIFSM
 
         public void SwitchTo(UIStateType newState)
         {
-            Assert.IsNotNull(newState);
+            Assert.IsNotNull(newState, "State type cannot be null.");
+            Assert.IsTrue(_stateMap.ContainsKey(newState), $"There is no state with key {newState}");
 
             if (_current != null && _current.StateType == newState)
             {

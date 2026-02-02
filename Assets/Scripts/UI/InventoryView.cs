@@ -5,7 +5,7 @@ namespace InventoryGame.Inventory
 {
     public class InventoryView : MonoBehaviour
     {
-        [SerializeField] private Inventory inventory;
+        [SerializeField] private InventorySO inventory;
         [SerializeField] private InventoryItemView itemViewPrefab;
         [SerializeField] private Transform itemViewsContainer;
 

@@ -18,7 +18,6 @@ namespace InventoryGame.FSM
             {
                 Assert.IsFalse(_stateMap.ContainsKey(state.StateId), $"State with key {state.StateId} is already defined.");
                 _stateMap[state.StateId] = state;
-                state.OnExit(); // Turn off all gameObjects of all states
             }
         }
 
@@ -40,9 +39,18 @@ namespace InventoryGame.FSM
                 return;
             }
 
+#if UNITY_EDITOR
+            if (_current != null)
+            {
+                Debug.Log($"Exiting form {_current.StateId.name}");
+            }
+#endif
             _current?.OnExit();
 
             _current = _stateMap[newState];
+#if UNITY_EDITOR
+            Debug.Log($"Entering {_current.StateId.name}");
+#endif
             _current.OnEnter();
         }
     }

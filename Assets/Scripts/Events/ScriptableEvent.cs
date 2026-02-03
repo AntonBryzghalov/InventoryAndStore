@@ -9,15 +9,20 @@ namespace InventoryGame.Events
     {
         private List<Action<T>> _listeners = new ();
 
-        public void Raise(T value)
+        private void OnDisable()
         {
-            foreach (var listener in _listeners)
+            _listeners.Clear();
+        }
+
+        public void Invoke(T value)
+        {
+            for (int i = _listeners.Count - 1; i >= 0; i--)
             {
-                listener(value);
+                _listeners[i](value);
             }
         }
 
-        public void Register(Action<T> listener)
+        public void AddListener(Action<T> listener)
         {
             Assert.IsNotNull(listener);
             if (!_listeners.Contains(listener))
@@ -26,7 +31,7 @@ namespace InventoryGame.Events
             }
         }
 
-        public void Unregister(Action<T> listener)
+        public void RemoveListener(Action<T> listener)
         {
             Assert.IsNotNull(listener);
             _listeners.Remove(listener);

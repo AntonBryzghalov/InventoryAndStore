@@ -12,7 +12,7 @@ namespace InventoryGame.GameLoop
         [SerializeField] private ShopComponent bonusItemsShop;
         [SerializeField] private ItemsSet bonusItemsSet;
         [SerializeField] private GameLoopConfig config;
-        [SerializeField] private PurchaseConfirmedEvent purchaseConfirmedEvent;
+        [SerializeField] private ItemPurchasedEvent itemPurchasedEvent;
         
         [Tooltip("Player's references")]
         [SerializeField] private Wallet playerWallet;
@@ -30,8 +30,8 @@ namespace InventoryGame.GameLoop
         {
             playerInventory.Clear();
             aiInventory.Clear();
-            playerWallet.GoldAmount = 0;
-            aiWallet.GoldAmount = 0;
+            playerWallet.GoldAmount = config.InitialGoldAmount;
+            aiWallet.GoldAmount = config.InitialGoldAmount;
 
             stateMachine.SwitchTo(basicItemsState);
         }

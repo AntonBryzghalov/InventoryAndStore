@@ -1,0 +1,49 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Assertions;
+
+namespace InventoryGame.FSM
+{
+    public class FiniteStateMachine : MonoBehaviour
+    {
+        [SerializeField] private StateId startStateId;
+        [SerializeField] private List<StateBase> states;
+
+        private readonly Dictionary<StateId, StateBase> _stateMap = new();
+        private StateBase _current;
+
+        private void Awake()
+        {
+            foreach (var state in states)
+            {
+                Assert.IsFalse(_stateMap.ContainsKey(state.StateId), $"State with key {state.StateId} is already defined.");
+                _stateMap[state.StateId] = state;
+                state.OnExit(); // Turn off all gameObjects of all states
+            }
+        }
+
+        private void Start()
+        {
+            if (startStateId != null)
+            {
+                SwitchTo(startStateId);
+            }
+        }
+
+        public void SwitchTo(StateId newState)
+        {
+            Assert.IsNotNull(newState, "State type cannot be null.");
+            Assert.IsTrue(_stateMap.ContainsKey(newState), $"There is no state with key {newState.name}");
+
+            if (_current != null && _current.StateId == newState)
+            {
+                return;
+            }
+
+            _current?.OnExit();
+
+            _current = _stateMap[newState];
+            _current.OnEnter();
+        }
+    }
+}

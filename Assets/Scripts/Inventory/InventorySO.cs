@@ -17,7 +17,7 @@ namespace InventoryGame.Inventory
 
         private void OnEnable()
         {
-            _items.Clear();
+            Clear();
         }
 
         public void AddItem(InventoryItem item)
@@ -53,6 +53,11 @@ namespace InventoryGame.Inventory
             }
 
             ItemsUpdated?.Invoke();
+        }
+
+        public void Clear()
+        {
+            _items.Clear();
         }
     }
 }

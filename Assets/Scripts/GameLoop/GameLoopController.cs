@@ -1,6 +1,7 @@
+using InventoryGame.FSM;
+using InventoryGame.Inventory;
 using InventoryGame.Sets;
 using InventoryGame.Shop;
-using InventoryGame.UI.UIFSM;
 using UnityEngine;
 
 namespace InventoryGame.GameLoop
@@ -11,22 +12,28 @@ namespace InventoryGame.GameLoop
         [SerializeField] private ShopComponent bonusItemsShop;
         [SerializeField] private ItemsSet bonusItemsSet;
         [SerializeField] private GameLoopConfig config;
+        [SerializeField] private PurchaseConfirmedEvent purchaseConfirmedEvent;
         
         [Tooltip("Player's references")]
         [SerializeField] private Wallet playerWallet;
         [SerializeField] private Wallet aiWallet;
-        [SerializeField] private Inventory.InventorySO playerInventory;
-        [SerializeField] private Inventory.InventorySO aiInventory;
+        [SerializeField] private InventorySO playerInventory;
+        [SerializeField] private InventorySO aiInventory;
 
         [Tooltip("States")]
-        [SerializeField] private UIStateMachine uiStateMachine;
-        [SerializeField] private UIStateType basicItemsUIState;
-        [SerializeField] private UIStateType bonusItemsUIState;
-        [SerializeField] private UIStateType gameplayUIState;
+        [SerializeField] private FiniteStateMachine stateMachine;
+        [SerializeField] private StateId basicItemsState;
+        [SerializeField] private StateId bonusItemsState;
+        [SerializeField] private StateId gameplayState;
 
         private void Start()
         {
-            uiStateMachine.SwitchTo(basicItemsUIState);
+            playerInventory.Clear();
+            aiInventory.Clear();
+            playerWallet.GoldAmount = 0;
+            aiWallet.GoldAmount = 0;
+
+            stateMachine.SwitchTo(basicItemsState);
         }
     }
 }

@@ -1,23 +1,21 @@
+using InventoryGame.FSM;
 using UnityEngine;
 
-namespace InventoryGame.UI.UIFSM
+namespace InventoryGame.UI
 {
-    public class UIState : MonoBehaviour
+    public class UIState : StateBase
     {
-        [SerializeField] private UIStateType stateType;
         [SerializeField] private GameObject[] associatedObjects;
 
-        public UIStateType StateType => stateType;
-
-        public void Enter()
+        public override void OnEnter()
         {
             foreach (var go in associatedObjects)
             {
                 go.SetActive(true);
             }
         }
-        
-        public void Exit()
+
+        public override void OnExit()
         {
             foreach (var go in associatedObjects)
             {

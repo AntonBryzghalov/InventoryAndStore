@@ -243,9 +243,9 @@ GameObject:
   - component: {fileID: 3584743124845401633}
   - component: {fileID: 4924691608833928}
   - component: {fileID: 5804203471842141792}
+  - component: {fileID: 2514513824913636240}
   - component: {fileID: 3805578909097979271}
   - component: {fileID: 6078666685756322216}
-  - component: {fileID: 2791782133053477608}
   m_Layer: 5
   m_Name: InventoryItemSmall
   m_TagString: Untagged
@@ -273,7 +273,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 220, y: 290}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4924691608833928
 CanvasRenderer:
@@ -313,6 +313,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2514513824913636240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3959829229114637413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 032a3b34566b87c4cac4cc392aa50d38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 8812588878689730043}
+  itemName: {fileID: 9078962076973360656}
+  itemDescription: {fileID: 0}
+  itemPrice: {fileID: 0}
 --- !u!114 &3805578909097979271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,8 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e9ef2088ec278144baa14b048414d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 8812588878689730043}
-  itemName: {fileID: 9078962076973360656}
+  itemView: {fileID: 2514513824913636240}
   quantity: {fileID: 3747697999484781169}
 --- !u!114 &6078666685756322216
 MonoBehaviour:
@@ -354,20 +369,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &2791782133053477608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3959829229114637413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!1 &7150278615572000820
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using InventoryGame.Inventory;
 using InventoryGame.Items;
 using InventoryGame.Sets;
 using InventoryGame.UI;
@@ -15,12 +16,19 @@ namespace InventoryGame.Shop
         [SerializeField] private Transform itemsParent;
         [SerializeField] private GameObject purchaseConfirmationPopup;
         [SerializeField] private ItemView selectedItemView;
+        [SerializeField] private int defaultItemsLimit = 10;
         [SerializeField] private Slider itemsAmountSlider;
+        [SerializeField] private Wallet playerWallet;
+        [SerializeField] private InventorySO playerInventory;
 
         private ItemInfo _selectedItem;
+        private int _itemsLimit;
+
+        public ItemsSet ItemsSet => itemsSet;
 
         private void Start()
         {
+            SetItemsLimit(defaultItemsLimit);
             SpawnItems();
         }
 
@@ -32,17 +40,24 @@ namespace InventoryGame.Shop
 
         public void SetItemsLimit(int amount)
         {
-            itemsAmountSlider.maxValue = amount;
-            itemsAmountSlider.value = 1;
-            itemsAmountSlider.onValueChanged.Invoke(itemsAmountSlider.value);
+            _itemsLimit = amount;
         }
 
         [UsedImplicitly]
         public void ConfirmPurchase()
         {
             Assert.IsNotNull(_selectedItem);
-            // TODO: initiate purchase here
             Debug.Log($"Purchase of x{itemsAmountSlider.value} {_selectedItem.ItemName} item confirmed");
+            
+            var itemQuantity = Mathf.RoundToInt(itemsAmountSlider.value);
+            var totalPrice = _selectedItem.BasePrice * itemQuantity;
+            Assert.IsTrue(playerWallet.GoldAmount >= totalPrice, "Player has no enough gold");
+
+            var purchasedInventoryItem = new InventoryItem(_selectedItem, itemQuantity);
+            playerInventory.AddItem(purchasedInventoryItem);
+            playerWallet.GoldAmount -= totalPrice;
+
+            purchaseConfirmationPopup.SetActive(false);
         }
 
         private void SpawnItems()
@@ -60,6 +75,22 @@ namespace InventoryGame.Shop
             _selectedItem = item;
             selectedItemView.SetItem(item);
             purchaseConfirmationPopup.SetActive(true);
+            UpdateSlider(Mathf.Min(_itemsLimit, playerWallet.GoldAmount / item.BasePrice));
+        }
+
+        private void UpdateSlider(int maxItems)
+        {
+            if (maxItems < 2)
+            {
+                itemsAmountSlider.gameObject.SetActive(false);
+            }
+            else
+            {
+                itemsAmountSlider.maxValue = maxItems;
+                itemsAmountSlider.gameObject.SetActive(true);
+            }
+
+            itemsAmountSlider.value = 1;
         }
     }
 }

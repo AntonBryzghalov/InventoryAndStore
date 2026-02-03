@@ -1788,6 +1788,7 @@ MonoBehaviour:
   itemsAmountSlider: {fileID: 1220216299416354344}
   playerWallet: {fileID: 11400000, guid: df5531bfe985acd45ac37d10c8c265e0, type: 2}
   playerInventory: {fileID: 11400000, guid: a24c17fc8983c7b42a6ef59c7b865b4d, type: 2}
+  itemPurchasedEvent: {fileID: 11400000, guid: 9cd51f3fffd94624ea4751f17dfcb539, type: 2}
 --- !u!1 &9124535801145107152
 GameObject:
   m_ObjectHideFlags: 0

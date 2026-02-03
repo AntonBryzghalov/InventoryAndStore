@@ -5,6 +5,7 @@ using InventoryGame.UI;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace InventoryGame.Shop
@@ -20,6 +21,7 @@ namespace InventoryGame.Shop
         [SerializeField] private Slider itemsAmountSlider;
         [SerializeField] private Wallet playerWallet;
         [SerializeField] private InventorySO playerInventory;
+        [SerializeField] private ItemPurchasedEvent itemPurchasedEvent;
 
         private ItemInfo _selectedItem;
         private int _itemsLimit;
@@ -53,11 +55,13 @@ namespace InventoryGame.Shop
             var totalPrice = _selectedItem.BasePrice * itemQuantity;
             Assert.IsTrue(playerWallet.GoldAmount >= totalPrice, "Player has no enough gold");
 
-            var purchasedInventoryItem = new InventoryItem(_selectedItem, itemQuantity);
-            playerInventory.AddItem(purchasedInventoryItem);
             playerWallet.GoldAmount -= totalPrice;
 
+            var purchasedInventoryItem = new InventoryItem(_selectedItem, itemQuantity);
+            playerInventory.AddItem(purchasedInventoryItem);
+
             purchaseConfirmationPopup.SetActive(false);
+            itemPurchasedEvent.Invoke(purchasedInventoryItem);
         }
 
         private void SpawnItems()

@@ -23,6 +23,7 @@ namespace InventoryGame.GameLoop
         [SerializeField] private InventorySO aiInventory;
         [SerializeField] private Wallet playerWallet;
         [SerializeField] private Wallet aiWallet;
+        [SerializeField] private ItemPurchasedEvent itemPurchasedEvent;
         
         private IReadOnlyList<ItemInfo> ShopItems => basicItemsShop.ItemsSet.List;
 
@@ -31,15 +32,17 @@ namespace InventoryGame.GameLoop
             base.OnEnter();
             playerWallet.GoldAmount += config.GoldGivenEachCycle;
             aiWallet.GoldAmount += config.GoldGivenEachCycle;
-            playerInventory.ItemsUpdated += OnPlayerInventoryItemsUpdated;
             UpdateItemsLeftToBuyText(0);
             basicItemsShop.SetItemsLimit(config.BasicItemsToBuy);
+
+            itemPurchasedEvent.AddListener(OnItemPurchased);
         }
 
         public override void OnExit()
         {
+            itemPurchasedEvent.RemoveListener(OnItemPurchased);
+
             base.OnExit();
-            playerInventory.ItemsUpdated -= OnPlayerInventoryItemsUpdated;
             BuyBasicItemsForAI();
         }
 
@@ -54,7 +57,7 @@ namespace InventoryGame.GameLoop
             }
         }
 
-        private void OnPlayerInventoryItemsUpdated()
+        private void OnItemPurchased(InventoryItem _)
         {
             var basicItemsBought = playerInventory.Items
                 .Where(item => ShopItems.Contains(item.ItemInfo))

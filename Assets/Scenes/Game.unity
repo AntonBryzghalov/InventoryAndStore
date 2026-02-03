@@ -608,7 +608,7 @@ MonoBehaviour:
   startStateId: {fileID: 0}
   states:
   - {fileID: 297053372889705060}
-  - {fileID: 1607909822}
+  - {fileID: 1607909824}
   - {fileID: 115545120}
 --- !u!1 &1517512376
 GameObject:
@@ -640,10 +640,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicItemsShop: {fileID: 297053372889705058}
-  bonusItemsShop: {fileID: 0}
+  bonusItemsShop: {fileID: 1607909823}
   bonusItemsSet: {fileID: 11400000, guid: 326caee99dc205942a13da8e1e25cba2, type: 2}
   config: {fileID: 11400000, guid: b39514056754ec8409eb721715826706, type: 2}
-  purchaseConfirmedEvent: {fileID: 11400000, guid: 9cd51f3fffd94624ea4751f17dfcb539, type: 2}
+  itemPurchasedEvent: {fileID: 11400000, guid: 9cd51f3fffd94624ea4751f17dfcb539, type: 2}
   playerWallet: {fileID: 11400000, guid: df5531bfe985acd45ac37d10c8c265e0, type: 2}
   aiWallet: {fileID: 11400000, guid: 932900bc367a29f45ae0bcceb38de05d, type: 2}
   playerInventory: {fileID: 11400000, guid: a24c17fc8983c7b42a6ef59c7b865b4d, type: 2}
@@ -777,7 +777,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8904406663446204022, guid: 41f07fd9669865b4f8924d06d596bd78, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1607909822}
+      addedObject: {fileID: 1607909824}
   m_SourcePrefab: {fileID: 100100000, guid: 41f07fd9669865b4f8924d06d596bd78, type: 3}
 --- !u!224 &1607909820 stripped
 RectTransform:
@@ -789,7 +789,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8904406663446204022, guid: 41f07fd9669865b4f8924d06d596bd78, type: 3}
   m_PrefabInstance: {fileID: 1607909819}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1607909822
+--- !u!114 &1607909823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6760102143107856917, guid: 41f07fd9669865b4f8924d06d596bd78, type: 3}
+  m_PrefabInstance: {fileID: 1607909819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607909821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1d2ccfe3ad57a489fc44c704be8ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1607909824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -798,12 +809,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1607909821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f49efebc835e4be49a9ac05b54a33925, type: 3}
+  m_Script: {fileID: 11500000, guid: 30bb4fcfca67ebf46836d1274ec947dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stateId: {fileID: 11400000, guid: 582479fb71ac57e43b5ed7f92b3e321e, type: 2}
   associatedObjects:
   - {fileID: 1607909821}
+  fsm: {fileID: 1103903014}
+  nextState: {fileID: 11400000, guid: 90793005d0d8e6446ba489487d7ff42b, type: 2}
+  bonusItemsShop: {fileID: 1607909823}
+  playerInventory: {fileID: 11400000, guid: a24c17fc8983c7b42a6ef59c7b865b4d, type: 2}
+  aiInventory: {fileID: 11400000, guid: 0a9c9b7f7959afb4cbb039324f36ba2a, type: 2}
+  playerWallet: {fileID: 11400000, guid: df5531bfe985acd45ac37d10c8c265e0, type: 2}
+  aiWallet: {fileID: 11400000, guid: 932900bc367a29f45ae0bcceb38de05d, type: 2}
+  dynamiteChanceIncreaseItem: {fileID: 11400000, guid: dc322e17f8f023c4397bf41a7c025ff5, type: 2}
+  itemPurchasedEvent: {fileID: 11400000, guid: 9cd51f3fffd94624ea4751f17dfcb539, type: 2}
 --- !u!1 &1891513405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,6 +1031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasicItemsShop
       objectReference: {fileID: 0}
+    - target: {fileID: 8904406663446204022, guid: 41f07fd9669865b4f8924d06d596bd78, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1062,6 +1086,7 @@ MonoBehaviour:
   aiInventory: {fileID: 11400000, guid: 0a9c9b7f7959afb4cbb039324f36ba2a, type: 2}
   playerWallet: {fileID: 11400000, guid: df5531bfe985acd45ac37d10c8c265e0, type: 2}
   aiWallet: {fileID: 11400000, guid: 932900bc367a29f45ae0bcceb38de05d, type: 2}
+  itemPurchasedEvent: {fileID: 11400000, guid: 9cd51f3fffd94624ea4751f17dfcb539, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

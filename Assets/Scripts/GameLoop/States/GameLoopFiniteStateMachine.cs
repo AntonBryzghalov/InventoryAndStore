@@ -1,6 +1,6 @@
 using InventoryGame.FSM;
 
-namespace InventoryGame.GameLoop
+namespace InventoryGame.GameLoop.States
 {
     public class GameLoopFiniteStateMachine : FiniteStateMachine<GameLoopStateId, GameLoopState>
     {

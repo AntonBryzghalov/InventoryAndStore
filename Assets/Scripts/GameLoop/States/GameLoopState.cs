@@ -1,7 +1,7 @@
 using InventoryGame.FSM;
 using UnityEngine;
 
-namespace InventoryGame.GameLoop
+namespace InventoryGame.GameLoop.States
 {
     public abstract class GameLoopState : StateBase<GameLoopStateId>
     {

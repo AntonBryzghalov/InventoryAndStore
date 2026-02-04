@@ -1,7 +1,7 @@
 using InventoryGame.FSM;
 using UnityEngine;
 
-namespace InventoryGame.GameLoop
+namespace InventoryGame.GameLoop.States
 {
     [CreateAssetMenu(fileName = "GameLoopStateId", menuName = "Inventory Game/State Ids/Game Loop State ID")]
     public sealed class GameLoopStateId : StateId

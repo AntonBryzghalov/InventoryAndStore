@@ -7,7 +7,7 @@ using InventoryGame.Shop;
 using TMPro;
 using UnityEngine;
 
-namespace InventoryGame.GameLoop
+namespace InventoryGame.GameLoop.States
 {
     public class BasicItemsShopState : GameLoopState
     {
@@ -32,7 +32,7 @@ namespace InventoryGame.GameLoop
             base.OnEnter();
             PlayerWallet.GoldAmount += config.GoldGivenEachCycle;
             AIWallet.GoldAmount += config.GoldGivenEachCycle;
-            UpdateItemsLeftToBuyText(0);
+            UpdateItemsLeftToBuyText(config.RoundsPerGame);
             basicItemsShop.SetItemsLimit(config.RoundsPerGame);
 
             itemPurchasedEvent.AddListener(OnItemPurchased);

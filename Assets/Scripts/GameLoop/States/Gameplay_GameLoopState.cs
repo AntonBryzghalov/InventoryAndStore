@@ -1,7 +1,7 @@
 using InventoryGame.Events;
 using UnityEngine;
 
-namespace InventoryGame.GameLoop
+namespace InventoryGame.GameLoop.States
 {
     public sealed class Gameplay_GameLoopState : GameLoopState
     {

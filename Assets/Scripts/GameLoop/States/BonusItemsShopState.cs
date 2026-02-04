@@ -6,7 +6,7 @@ using InventoryGame.Items;
 using InventoryGame.Shop;
 using UnityEngine;
 
-namespace InventoryGame.GameLoop
+namespace InventoryGame.GameLoop.States
 {
     public class BonusItemsShopState : GameLoopState
     {

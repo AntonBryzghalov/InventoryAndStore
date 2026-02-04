@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae38a013f3fa3184d9516c4a8f3b8fab, type: 3}
+  m_Name: Player_AI_GameplayTest
+  m_EditorClassIdentifier: 
+  wallet: {fileID: 11400000, guid: 932900bc367a29f45ae0bcceb38de05d, type: 2}
+  inventory: {fileID: 11400000, guid: 557c5ad835c9d44438bc7b32d922ef3d, type: 2}
+  gameState: {fileID: 11400000, guid: 2f867de492c06b54b8ee03c319dccdf7, type: 2}

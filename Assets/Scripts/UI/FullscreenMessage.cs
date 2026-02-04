@@ -10,7 +10,7 @@ namespace InventoryGame.UI
         [SerializeField] private TMP_Text messageText;
 
         [SerializeField] private float fadeDuration = 0.3f;
-        [SerializeField] private float visibleDuration = 1.5f;
+        [SerializeField] private float defaultVisibleDuration = 1.5f;
 
         private Coroutine _routine;
 
@@ -23,19 +23,19 @@ namespace InventoryGame.UI
             canvasGroup.blocksRaycasts = false;
         }
 
-        public void Show(string message)
+        public void Show(string message, float duration = 0f)
         {
             if (_routine != null)
                 StopCoroutine(_routine);
 
             messageText.text = message;
-            _routine = StartCoroutine(ShowRoutine());
+            _routine = StartCoroutine(ShowRoutine(duration > 0f ? duration : defaultVisibleDuration));
         }
 
-        private IEnumerator ShowRoutine()
+        private IEnumerator ShowRoutine(float visibleDuration)
         {
             yield return Fade(0f, 1f);
-            yield return new WaitForSeconds(visibleDuration);
+            yield return new WaitForSecondsRealtime(visibleDuration);
             yield return Fade(1f, 0f);
 
             _routine = null;
@@ -48,13 +48,12 @@ namespace InventoryGame.UI
 
             while (time < fadeDuration)
             {
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime;
                 canvasGroup.alpha = Mathf.Lerp(from, to, time / fadeDuration);
                 yield return null;
             }
 
             canvasGroup.alpha = to;
-            _routine = null;
         }
     }
 }

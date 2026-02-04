@@ -1,31 +1,39 @@
+using System.Collections.Generic;
 using InventoryGame.Events;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
 using InventoryGame.Sets;
 using InventoryGame.UI;
 using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace InventoryGame.Shop
 {
     public class ShopComponent : MonoBehaviour
     {
+        [Header("Inventory UI References")]
         [SerializeField] private ItemView itemViewPrefab;
-        [SerializeField] private ItemsSet itemsSet;
         [SerializeField] private Transform itemsParent;
+
+        [Header("Purchase Confirmation Popup")]
+        // TODO: make it a separate entity
         [SerializeField] private GameObject purchaseConfirmationPopup;
         [SerializeField] private ItemView selectedItemView;
         [SerializeField] private int defaultItemsLimit = 10;
         [SerializeField] private Slider itemsAmountSlider;
+
+        [Header("Scriptable References")]
+        [SerializeField] private ItemsSet itemsSet;
         [SerializeField] private Wallet playerWallet;
         [SerializeField] private InventorySO playerInventory;
         [SerializeField] private InventoryItemEvent itemPurchasedEvent;
 
         private ItemInfo _selectedItem;
         private int _itemsLimit;
+        private List<ItemView> _spawnedItemViews = new ();
 
         public ItemsSet ItemsSet => itemsSet;
 
@@ -33,6 +41,14 @@ namespace InventoryGame.Shop
         {
             SetItemsLimit(defaultItemsLimit);
             SpawnItems();
+        }
+
+        private void OnDestroy()
+        {
+            foreach (var itemView in _spawnedItemViews)
+            {
+                if (itemView != null) itemView.OnItemSelected -= OnItemSelected;
+            }
         }
 
         private void OnEnable()
@@ -72,6 +88,7 @@ namespace InventoryGame.Shop
                 var itemView = Instantiate(itemViewPrefab, itemsParent);
                 itemView.Bind(item);
                 itemView.OnItemSelected += OnItemSelected;
+                _spawnedItemViews.Add(itemView);
             }
         }
 

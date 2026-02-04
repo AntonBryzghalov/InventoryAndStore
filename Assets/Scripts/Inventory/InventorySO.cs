@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using InventoryGame.Items;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -51,6 +52,21 @@ namespace InventoryGame.Inventory
             }
 
             ItemsUpdated?.Invoke();
+        }
+
+        public void RemoveAllBasicItems()
+        {
+            var itemsRemoved = 0;
+            for (int i = _items.Count - 1; i >= 0; i--)
+            {
+                if (_items[i].ItemInfo is BasicItemInfo)
+                {
+                    _items.RemoveAt(i);
+                    itemsRemoved++;
+                }
+            }
+
+            if (itemsRemoved > 0) ItemsUpdated?.Invoke();
         }
 
         public void Clear()

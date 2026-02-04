@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InventoryGame.Events
 {
-    [CreateAssetMenu(fileName = "ItemPurchasedEvent", menuName = "Inventory Game/Events/Item Purchased")]
+    [CreateAssetMenu(fileName = "InventoryItemEvent", menuName = "Inventory Game/Events/Inventory Item Event")]
     public class InventoryItemEvent : ScriptableEvent<InventoryItem>
     {
     }

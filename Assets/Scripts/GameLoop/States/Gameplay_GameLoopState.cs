@@ -15,11 +15,17 @@ namespace InventoryGame.GameLoop.States
         [SerializeField] private CoreGameplayStateId initialCoreState;
 
         [Header("Scriptables References")]
+        [SerializeField] private GameContext context;
         [SerializeField] private ScriptableEvent gameOverEvent;
         
         public override void OnEnter()
         {
             base.OnEnter();
+
+            context.RealPlayer.GameState.Score = 0;
+            context.AIPlayer.GameState.Score = 0;
+            context.Round = 0;
+
             gameOverEvent.AddListener(OnGameOver);
             coreFsm.SwitchTo(initialCoreState);
         }

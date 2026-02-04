@@ -30,8 +30,13 @@ namespace InventoryGame.GameLoop.States
         public override void OnEnter()
         {
             base.OnEnter();
+
             PlayerWallet.GoldAmount += config.GoldGivenEachCycle;
             AIWallet.GoldAmount += config.GoldGivenEachCycle;
+
+            PlayerInventory.RemoveAllBasicItems();
+            AIInventory.RemoveAllBasicItems();
+
             UpdateItemsLeftToBuyText(config.RoundsPerGame);
             basicItemsShop.SetItemsLimit(config.RoundsPerGame);
 

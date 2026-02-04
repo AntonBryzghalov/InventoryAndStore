@@ -1,39 +1,28 @@
 using InventoryGame.FSM;
-using InventoryGame.Inventory;
-using InventoryGame.Sets;
-using InventoryGame.Shop;
 using UnityEngine;
 
 namespace InventoryGame.GameLoop
 {
     public class GameLoopController : MonoBehaviour
     {
-        [SerializeField] private ShopComponent basicItemsShop;
-        [SerializeField] private ShopComponent bonusItemsShop;
-        [SerializeField] private ItemsSet bonusItemsSet;
         [SerializeField] private GameLoopConfig config;
-        [SerializeField] private ItemPurchasedEvent itemPurchasedEvent;
         
         [Tooltip("Player's references")]
-        [SerializeField] private Wallet playerWallet;
-        [SerializeField] private Wallet aiWallet;
-        [SerializeField] private InventorySO playerInventory;
-        [SerializeField] private InventorySO aiInventory;
+        [SerializeField] private Player realPlayer;
+        [SerializeField] private Player aiPlayer;
 
         [Tooltip("States")]
         [SerializeField] private FiniteStateMachine stateMachine;
-        [SerializeField] private StateId basicItemsState;
-        [SerializeField] private StateId bonusItemsState;
-        [SerializeField] private StateId gameplayState;
+        [SerializeField] private StateId initialState;
 
         private void Start()
         {
-            playerInventory.Clear();
-            aiInventory.Clear();
-            playerWallet.GoldAmount = config.InitialGoldAmount;
-            aiWallet.GoldAmount = config.InitialGoldAmount;
+            realPlayer.Inventory.Clear();
+            aiPlayer.Inventory.Clear();
+            realPlayer.Wallet.GoldAmount = config.InitialGoldAmount;
+            aiPlayer.Wallet.GoldAmount = config.InitialGoldAmount;
 
-            stateMachine.SwitchTo(basicItemsState);
+            stateMachine.SwitchTo(initialState);
         }
     }
 }

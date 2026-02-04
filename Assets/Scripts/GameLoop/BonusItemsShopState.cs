@@ -19,7 +19,7 @@ namespace InventoryGame.GameLoop
         [SerializeField] private Wallet playerWallet;
         [SerializeField] private Wallet aiWallet;
         [SerializeField] private ItemInfo dynamiteChanceIncreaseItem;
-        [SerializeField] private ItemPurchasedEvent itemPurchasedEvent;
+        [SerializeField] private InventoryItemEvent itemPurchasedEvent;
 
         private IReadOnlyList<ItemInfo> ShopItems => bonusItemsShop.ItemsSet.List;
 

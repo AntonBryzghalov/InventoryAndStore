@@ -23,7 +23,7 @@ namespace InventoryGame.GameLoop
         [SerializeField] private InventorySO aiInventory;
         [SerializeField] private Wallet playerWallet;
         [SerializeField] private Wallet aiWallet;
-        [SerializeField] private ItemPurchasedEvent itemPurchasedEvent;
+        [SerializeField] private InventoryItemEvent itemPurchasedEvent;
         
         private IReadOnlyList<ItemInfo> ShopItems => basicItemsShop.ItemsSet.List;
 

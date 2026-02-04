@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using InventoryGame.Events;
-using InventoryGame.FSM;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
 using InventoryGame.Shop;
@@ -12,7 +11,7 @@ namespace InventoryGame.GameLoop
 {
     public class BasicItemsShopState : GameLoopState
     {
-        [SerializeField] private FiniteStateMachine fsm;
+        [SerializeField] private GameLoopFiniteStateMachine fsm;
         [SerializeField] private GameLoopStateId nextState;
 
         [SerializeField] private TMP_Text itemsLeftToBuyText;

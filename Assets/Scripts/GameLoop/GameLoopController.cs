@@ -1,4 +1,3 @@
-using InventoryGame.FSM;
 using UnityEngine;
 
 namespace InventoryGame.GameLoop
@@ -7,13 +6,13 @@ namespace InventoryGame.GameLoop
     {
         [SerializeField] private GameLoopConfig config;
         
-        [Tooltip("Player's references")]
+        [Header("Player's references")]
         [SerializeField] private Player realPlayer;
         [SerializeField] private Player aiPlayer;
 
-        [Tooltip("States")]
-        [SerializeField] private FiniteStateMachine stateMachine;
-        [SerializeField] private StateId initialState;
+        [Header("States")]
+        [SerializeField] private GameLoopFiniteStateMachine stateMachine;
+        [SerializeField] private GameLoopStateId initialState;
 
         private void Start()
         {

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using InventoryGame.Events;
-using InventoryGame.FSM;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
 using InventoryGame.Shop;
@@ -10,7 +9,7 @@ namespace InventoryGame.GameLoop
 {
     public class BonusItemsShopState : GameLoopState
     {
-        [SerializeField] private FiniteStateMachine fsm;
+        [SerializeField] private GameLoopFiniteStateMachine fsm;
         [SerializeField] private GameLoopStateId nextState;
 
         [SerializeField] private ShopComponent bonusItemsShop;

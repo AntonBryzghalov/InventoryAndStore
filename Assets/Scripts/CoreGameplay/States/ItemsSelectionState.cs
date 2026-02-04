@@ -1,7 +1,6 @@
 using System.Linq;
 using InventoryGame.Events;
 using InventoryGame.ExtensionMethods;
-using InventoryGame.FSM;
 using InventoryGame.GameLoop;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
@@ -14,7 +13,7 @@ namespace InventoryGame.CoreGameplay.States
     public class ItemsSelectionState : CoreGameplayState
     {
         [Header("FSM")]
-        [SerializeField] private FiniteStateMachine fsm;
+        [SerializeField] private CoreGameplayFiniteStateMachine fsm;
         [SerializeField] private CoreGameplayStateId nextStateId;
 
         [Header("Scriptable References")]

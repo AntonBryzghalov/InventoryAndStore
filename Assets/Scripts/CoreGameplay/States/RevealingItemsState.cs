@@ -1,5 +1,4 @@
 using System.Collections;
-using InventoryGame.FSM;
 using InventoryGame.UI;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace InventoryGame.CoreGameplay.States
     public class RevealingItemsState : CoreGameplayState
     {
         [Header("FSM")]
-        [SerializeField] private FiniteStateMachine fsm;
+        [SerializeField] private CoreGameplayFiniteStateMachine fsm;
         [SerializeField] private CoreGameplayStateId nextStateId;
 
         [Header("Scriptable References")]

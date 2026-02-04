@@ -4,13 +4,15 @@ using UnityEngine.Assertions;
 
 namespace InventoryGame.FSM
 {
-    public class FiniteStateMachine : MonoBehaviour
+    public abstract class FiniteStateMachine<TStateId, TState> : MonoBehaviour
+        where TStateId : StateId
+        where TState : StateBase<TStateId>
     {
-        [SerializeField] private StateId startStateId;
-        [SerializeField] private List<StateBase> states;
+        [SerializeField] private TStateId startStateId;
+        [SerializeField] private List<TState> states;
 
-        private readonly Dictionary<StateId, StateBase> _stateMap = new();
-        private StateBase _current;
+        private readonly Dictionary<StateId, TState> _stateMap = new();
+        private StateBase<TStateId> _current;
 
         private void Awake()
         {

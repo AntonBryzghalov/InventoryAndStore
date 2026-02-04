@@ -11,13 +11,13 @@ namespace InventoryGame.GameLoop
         [Range(0f, 1f)]
         [SerializeField] private float initialDynamiteChance = 0.1f;
         [SerializeField] private int winnerGoldReward = 500;
-        [SerializeField] private int evenGoldReward = 250;
+        [SerializeField] private int drawGoldReward = 250;
 
         public int RoundsPerGame => roundsPerGame;
         public int InitialGoldAmount => initialGoldAmount;
         public  int GoldGivenEachCycle => goldGivenEachCycle;
         public float InitialDynamiteChance => initialDynamiteChance;
         public int WinnerGoldReward => winnerGoldReward;
-        public int EvenGoldReward => evenGoldReward;
+        public int DrawGoldReward => drawGoldReward;
     }
 }

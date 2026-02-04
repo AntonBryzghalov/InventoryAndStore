@@ -5,16 +5,15 @@ using InventoryGame.FSM;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
 using InventoryGame.Shop;
-using InventoryGame.UI;
 using TMPro;
 using UnityEngine;
 
 namespace InventoryGame.GameLoop
 {
-    public class BasicItemsShopState : UIState
+    public class BasicItemsShopState : GameLoopState
     {
         [SerializeField] private FiniteStateMachine fsm;
-        [SerializeField] private StateId nextState;
+        [SerializeField] private GameLoopStateId nextState;
 
         [SerializeField] private TMP_Text itemsLeftToBuyText;
 

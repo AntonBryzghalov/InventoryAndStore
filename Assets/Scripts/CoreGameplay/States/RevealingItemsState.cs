@@ -3,21 +3,26 @@ using InventoryGame.FSM;
 using InventoryGame.UI;
 using UnityEngine;
 
-namespace InventoryGame.CoreGameplay
+namespace InventoryGame.CoreGameplay.States
 {
-    public class RevealingItemsState : StateBase
+    public class RevealingItemsState : CoreGameplayState
     {
+        [Header("FSM")]
         [SerializeField] private FiniteStateMachine fsm;
-        [SerializeField] private StateId nextStateId;
+        [SerializeField] private CoreGameplayStateId nextStateId;
 
+        [Header("Scriptable References")]
         [SerializeField] private FullscreenMessage message;
         [SerializeField] private GameContext gameContext;
-        [SerializeField] private float revealingDuration = 1f;
 
+        [Header("UI References")]
         [SerializeField] private ItemView playerSelectedItemView;
         [SerializeField] private ItemView aiSelectedItemView;
         [SerializeField] private HiddenObject hiddenObjectPlayer;
         [SerializeField] private HiddenObject hiddenObjectAi;
+
+        [Header("Configuration")]
+        [SerializeField] private float displayDurationAfterRevealing = 2f;
 
         public override void OnEnter()
         {
@@ -36,13 +41,18 @@ namespace InventoryGame.CoreGameplay
                 yield return null;
             }
 
+            RevealItems();
+            yield return new WaitForSecondsRealtime(displayDurationAfterRevealing);
+
+            fsm.SwitchTo(nextStateId);
+        }
+
+        private void RevealItems()
+        {
             hiddenObjectPlayer.SetHidden(false);
             hiddenObjectAi.SetHidden(false);
             playerSelectedItemView.Bind(gameContext.RealPlayer.GameState.SelectedBasicItem);
             aiSelectedItemView.Bind(gameContext.AIPlayer.GameState.SelectedBasicItem);
-
-            yield return new WaitForSecondsRealtime(revealingDuration);
-            fsm.SwitchTo(nextStateId);
         }
     }
 }

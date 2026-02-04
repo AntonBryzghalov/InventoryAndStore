@@ -4,15 +4,14 @@ using InventoryGame.FSM;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
 using InventoryGame.Shop;
-using InventoryGame.UI;
 using UnityEngine;
 
 namespace InventoryGame.GameLoop
 {
-    public class BonusItemsShopState : UIState
+    public class BonusItemsShopState : GameLoopState
     {
         [SerializeField] private FiniteStateMachine fsm;
-        [SerializeField] private StateId nextState;
+        [SerializeField] private GameLoopStateId nextState;
 
         [SerializeField] private ShopComponent bonusItemsShop;
         [SerializeField] private InventorySO playerInventory;

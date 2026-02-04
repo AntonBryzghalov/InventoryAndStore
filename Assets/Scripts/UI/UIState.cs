@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InventoryGame.UI
 {
-    public class UIState : StateBase
+    public abstract class UIState : StateBase
     {
         [SerializeField] private GameObject[] associatedObjects;
 

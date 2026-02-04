@@ -6,7 +6,7 @@ namespace InventoryGame.CoreGameplay
     [CreateAssetMenu(fileName = "PlayerGameState", menuName = "Inventory Game/Player Game State")]
     public class PlayerGameState : ScriptableObject
     {
-        public ItemInfo SelectedBasicItem;
+        public BasicItemInfo SelectedBasicItem;
         public int Score;
         public float DynamiteChanceNormalized;
         public bool EnemyInventoryUnveiled;

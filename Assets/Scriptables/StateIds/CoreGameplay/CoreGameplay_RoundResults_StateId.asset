@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fde4f5a91a002b469e8ad7348656ec7, type: 3}
-  m_Name: MatchResultsStateId
+  m_Script: {fileID: 11500000, guid: 7732ccc619cbcdf4688345cbf03fd691, type: 3}
+  m_Name: CoreGameplay_RoundResults_StateId
   m_EditorClassIdentifier: 

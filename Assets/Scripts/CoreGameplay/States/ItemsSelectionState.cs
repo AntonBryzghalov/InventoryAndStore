@@ -5,30 +5,35 @@ using InventoryGame.FSM;
 using InventoryGame.GameLoop;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
-using InventoryGame.Shop;
 using InventoryGame.UI;
 using UnityEngine;
 
-namespace InventoryGame.CoreGameplay
+namespace InventoryGame.CoreGameplay.States
 {
     // TODO: extract AI logic to a separate class
-    public class ItemsSelectionState : StateBase
+    public class ItemsSelectionState : CoreGameplayState
     {
+        [Header("FSM")]
         [SerializeField] private FiniteStateMachine fsm;
-        [SerializeField] private StateId nextStateId;
+        [SerializeField] private CoreGameplayStateId nextStateId;
 
+        [Header("Scriptable References")]
         [SerializeField] private GameContext gameContext;
         [SerializeField] private InventoryItemEvent playerSelectedItemEvent;
         [SerializeField] private EffectItemInfo dynamiteBoosterItem;
         [SerializeField] private BasicItemInfo dynamiteItem;
         [SerializeField] private GameLoopConfig config;
 
+        [Header("UI References")]
+        [SerializeField] private HiddenObject hiddenObjectPlayer;
+        [SerializeField] private HiddenObject hiddenObjectAi;
         [SerializeField] private FormattedIntTextSetter roundText;
         [SerializeField] private FormattedFloatTextSetter playerDynamiteChancesText;
         [SerializeField] private FormattedFloatTextSetter aiDynamiteChancesText;
 
         public override void OnEnter()
         {
+            HideSelectedItemsSlots();
             SetNextRound();
             SetInitialDynamiteChances();
             ExecuteAiMove();
@@ -41,13 +46,19 @@ namespace InventoryGame.CoreGameplay
             TryConvertSelectedItemsToDynamites();
         }
 
+        private void HideSelectedItemsSlots()
+        {
+            hiddenObjectPlayer.SetHidden(true);
+            hiddenObjectAi.SetHidden(true);
+        }
+
         private void OnPlayerSelectedItem(InventoryItem inventoryItem)
         {
             var usedItem = new InventoryItem(inventoryItem.ItemInfo);
 
-            if (usedItem.ItemInfo is BasicItemInfo)
+            if (usedItem.ItemInfo is BasicItemInfo basicItemInfo)
             {
-                gameContext.RealPlayer.GameState.SelectedBasicItem = usedItem.ItemInfo;
+                gameContext.RealPlayer.GameState.SelectedBasicItem = basicItemInfo;
                 gameContext.RealPlayer.Inventory.RemoveItem(usedItem);
                 fsm.SwitchTo(nextStateId);
                 return;
@@ -75,7 +86,7 @@ namespace InventoryGame.CoreGameplay
 
             var selectedItem = baseItems.GetRandomElement();
             var usedItem = new InventoryItem(selectedItem.ItemInfo);
-            gameContext.AIPlayer.GameState.SelectedBasicItem = usedItem.ItemInfo;
+            gameContext.AIPlayer.GameState.SelectedBasicItem = usedItem.ItemInfo as BasicItemInfo;
             aiInventory.RemoveItem(usedItem);
         }
 

@@ -20,15 +20,12 @@ namespace InventoryGame.UI
 
         public void SetHidden(bool isHidden)
         {
-            if (_initialized)
+            if (_initialized && IsHidden == isHidden)
             {
-                if (IsHidden == isHidden) return;
-            }
-            else
-            {
-                IsHidden = isHidden;
+                return;
             }
 
+            IsHidden = isHidden;
             hidingObject.SetActive(isHidden);
             hiddenObject.SetActive(!isHidden);
         }

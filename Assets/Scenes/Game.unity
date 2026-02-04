@@ -554,8 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: b39514056754ec8409eb721715826706, type: 2}
-  realPlayer: {fileID: 11400000, guid: 9599cddffa550944790663c7c1f7620b, type: 2}
-  aiPlayer: {fileID: 11400000, guid: c6c64b48f3da75d4c8fad35b430a2ca7, type: 2}
+  context: {fileID: 11400000, guid: 77c56c3978703f041a9c4799fba1295a, type: 2}
   stateMachine: {fileID: 1103903014}
   initialState: {fileID: 11400000, guid: 43e0c1cdf76e43a409467f93088d34e3, type: 2}
 --- !u!4 &1517512378

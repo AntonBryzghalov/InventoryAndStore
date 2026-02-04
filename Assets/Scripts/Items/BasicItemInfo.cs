@@ -9,12 +9,4 @@ namespace InventoryGame.Items
 
         public BasicItemType ItemType => itemType;
     }
-
-    public enum BasicItemType
-    {
-        Rock,
-        Paper,
-        Scissors,
-        Dynamite
-    }
 }

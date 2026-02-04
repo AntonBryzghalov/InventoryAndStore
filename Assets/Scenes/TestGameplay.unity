@@ -147,6 +147,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1140780848025997575, guid: 57ae0517cac46674cb4ac75f1ad6a6a4, type: 3}
+      propertyPath: gameContext
+      value: 
+      objectReference: {fileID: 11400000, guid: b778ff84e88afe9409b50490d8ee55c0, type: 2}
     - target: {fileID: 1936101459585801530, guid: 57ae0517cac46674cb4ac75f1ad6a6a4, type: 3}
       propertyPath: inventory
       value: 
@@ -164,6 +168,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b778ff84e88afe9409b50490d8ee55c0, type: 2}
     - target: {fileID: 3167377336821279567, guid: 57ae0517cac46674cb4ac75f1ad6a6a4, type: 3}
+      propertyPath: gameContext
+      value: 
+      objectReference: {fileID: 11400000, guid: b778ff84e88afe9409b50490d8ee55c0, type: 2}
+    - target: {fileID: 6320711804921431004, guid: 57ae0517cac46674cb4ac75f1ad6a6a4, type: 3}
       propertyPath: gameContext
       value: 
       objectReference: {fileID: 11400000, guid: b778ff84e88afe9409b50490d8ee55c0, type: 2}

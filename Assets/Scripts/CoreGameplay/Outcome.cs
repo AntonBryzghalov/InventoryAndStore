@@ -2,8 +2,8 @@
 {
     public enum Outcome
     {
-        Win,
-        Lose,
-        Draw
+        Win = 1,
+        Lose = -1,
+        Draw = 0
     }
 }

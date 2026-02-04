@@ -35,7 +35,6 @@ namespace InventoryGame.CoreGameplay.States
             HideSelectedItemsSlots();
             SetNextRound();
             SetInitialDynamiteChances();
-            ExecuteAiMove();
             playerSelectedItemEvent.AddListener(OnPlayerSelectedItem);
         }
 
@@ -59,6 +58,9 @@ namespace InventoryGame.CoreGameplay.States
             {
                 gameContext.RealPlayer.GameState.SelectedBasicItem = basicItemInfo;
                 gameContext.RealPlayer.Inventory.RemoveItem(usedItem);
+
+                ExecuteAiMove();
+
                 fsm.SwitchTo(nextStateId);
                 return;
             }

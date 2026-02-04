@@ -18,19 +18,20 @@ namespace InventoryGame.GameLoop
 
         [SerializeField] private GameLoopConfig config;
         [SerializeField] private ShopComponent basicItemsShop;
-        [SerializeField] private InventorySO playerInventory;
-        [SerializeField] private InventorySO aiInventory;
-        [SerializeField] private Wallet playerWallet;
-        [SerializeField] private Wallet aiWallet;
+        [SerializeField] private GameContext context;
         [SerializeField] private InventoryItemEvent itemPurchasedEvent;
         
         private IReadOnlyList<ItemInfo> ShopItems => basicItemsShop.ItemsSet.List;
+        private Wallet PlayerWallet => context.RealPlayer.Wallet;
+        private Wallet AIWallet => context.AIPlayer.Wallet;
+        private InventorySO PlayerInventory => context.RealPlayer.Inventory;
+        private InventorySO AIInventory => context.AIPlayer.Inventory;
 
         public override void OnEnter()
         {
             base.OnEnter();
-            playerWallet.GoldAmount += config.GoldGivenEachCycle;
-            aiWallet.GoldAmount += config.GoldGivenEachCycle;
+            PlayerWallet.GoldAmount += config.GoldGivenEachCycle;
+            AIWallet.GoldAmount += config.GoldGivenEachCycle;
             UpdateItemsLeftToBuyText(0);
             basicItemsShop.SetItemsLimit(config.RoundsPerGame);
 
@@ -51,14 +52,14 @@ namespace InventoryGame.GameLoop
             for (int i = 0; i < itemsAmount; i++)
             {
                 var itemType = ShopItems[Random.Range(0, ShopItems.Count)];
-                aiWallet.GoldAmount -= itemType.BasePrice;
-                aiInventory.AddItem(new InventoryItem(itemType));
+                AIWallet.GoldAmount -= itemType.BasePrice;
+                AIInventory.AddItem(new InventoryItem(itemType));
             }
         }
 
         private void OnItemPurchased(InventoryItem _)
         {
-            var basicItemsBought = playerInventory.Items
+            var basicItemsBought = PlayerInventory.Items
                 .Where(item => ShopItems.Contains(item.ItemInfo))
                 .Sum(item => item.Quantity);
 

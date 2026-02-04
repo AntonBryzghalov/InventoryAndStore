@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using InventoryGame.Events;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
@@ -13,14 +14,16 @@ namespace InventoryGame.GameLoop
         [SerializeField] private GameLoopStateId nextState;
 
         [SerializeField] private ShopComponent bonusItemsShop;
-        [SerializeField] private InventorySO playerInventory;
-        [SerializeField] private InventorySO aiInventory;
-        [SerializeField] private Wallet playerWallet;
-        [SerializeField] private Wallet aiWallet;
-        [SerializeField] private ItemInfo dynamiteChanceIncreaseItem;
+
+        [SerializeField] private GameContext context;
+        [SerializeField] private EffectItemInfo dynamiteChanceIncreaseItem;
         [SerializeField] private InventoryItemEvent itemPurchasedEvent;
 
         private IReadOnlyList<ItemInfo> ShopItems => bonusItemsShop.ItemsSet.List;
+        private Wallet PlayerWallet => context.RealPlayer.Wallet;
+        private Wallet AIWallet => context.AIPlayer.Wallet;
+        private InventorySO PlayerInventory => context.RealPlayer.Inventory;
+        private InventorySO AIInventory => context.AIPlayer.Inventory;
 
         public override void OnEnter()
         {
@@ -38,15 +41,15 @@ namespace InventoryGame.GameLoop
 
         private void BuyItemsForAI()
         {
-            var affordableDynamiteQuantity = aiWallet.GoldAmount / dynamiteChanceIncreaseItem.BasePrice;
+            var affordableDynamiteQuantity = AIWallet.GoldAmount / dynamiteChanceIncreaseItem.BasePrice;
             if (affordableDynamiteQuantity == 0)
             {
                 return;
             }
 
             var inventoryItem = new InventoryItem(dynamiteChanceIncreaseItem, affordableDynamiteQuantity);
-            aiInventory.AddItem(inventoryItem);
-            aiWallet.GoldAmount -= dynamiteChanceIncreaseItem.BasePrice * affordableDynamiteQuantity;
+            AIInventory.AddItem(inventoryItem);
+            AIWallet.GoldAmount -= dynamiteChanceIncreaseItem.BasePrice * affordableDynamiteQuantity;
         }
 
         private void OnItemPurchased(InventoryItem _)
@@ -56,23 +59,11 @@ namespace InventoryGame.GameLoop
 
         private void CheckForTransitionToNextState()
         {
-            if (!PlayerCanAffordAnything())
+            var playerCanAffordAnything = ShopItems.Any(item => PlayerWallet.GoldAmount >= item.BasePrice);
+            if (!playerCanAffordAnything)
             {
                 fsm.SwitchTo(nextState);
             }
-        }
-
-        private bool PlayerCanAffordAnything()
-        {
-            foreach (var itemInfo in ShopItems)
-            {
-                if (playerWallet.GoldAmount >= itemInfo.BasePrice)
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
     }
 }

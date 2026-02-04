@@ -2104,7 +2104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752074be9d7f3a54eb82f6ff17141dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startStateId: {fileID: 11400000, guid: f9822476bd1680343a18c217a81d2525, type: 2}
+  startStateId: {fileID: 0}
   states:
   - {fileID: 2518186138779186732}
   - {fileID: 3167377336821279567}

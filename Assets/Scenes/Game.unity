@@ -1003,9 +1003,22 @@ MonoBehaviour:
   stateId: {fileID: 11400000, guid: e099d919a7a4c0f439f3c198f671cdb9, type: 2}
   associatedObjects:
   - {fileID: 1858369481}
-  fsm: {fileID: 1103903014}
+  gameLoopFsm: {fileID: 0}
   nextState: {fileID: 11400000, guid: 43e0c1cdf76e43a409467f93088d34e3, type: 2}
+  coreFsm: {fileID: 791750321407322310}
+  initialCoreState: {fileID: 11400000, guid: f9822476bd1680343a18c217a81d2525, type: 2}
   gameOverEvent: {fileID: 11400000, guid: 8ebeb8801dcdcab4a981e1511a010fba, type: 2}
+--- !u!114 &791750321407322310 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 626746002222613263, guid: 57ae0517cac46674cb4ac75f1ad6a6a4, type: 3}
+  m_PrefabInstance: {fileID: 791750321407322304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858369481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752074be9d7f3a54eb82f6ff17141dc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

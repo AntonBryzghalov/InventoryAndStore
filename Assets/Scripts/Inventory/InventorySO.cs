@@ -15,11 +15,6 @@ namespace InventoryGame.Inventory
 
         public List<InventoryItem> Items => _items;
 
-        private void OnEnable()
-        {
-            Clear();
-        }
-
         public void AddItem(InventoryItem item)
         {
             Assert.IsTrue(item.Quantity >= 1, $"Item '{item.ItemInfo.ItemName}' quantity is less than 1");
@@ -46,10 +41,13 @@ namespace InventoryGame.Inventory
                 _items[index].Quantity >= item.Quantity,
                 $"There is not enough of {item.ItemInfo.ItemName} items in the inventory ({_items[index].Quantity}/{item.Quantity})");
 
-            _items[index].Quantity -= item.Quantity;
-            if (_items[index].Quantity == 0)
+            if (_items[index].Quantity == item.Quantity)
             {
                 _items.RemoveAt(index);
+            }
+            else
+            {
+                _items[index].Quantity -= item.Quantity;
             }
 
             ItemsUpdated?.Invoke();

@@ -29,12 +29,12 @@ namespace InventoryGame.FSM
             }
         }
 
-        public void SwitchTo(StateId newState)
+        public void SwitchTo(StateId newStateId)
         {
-            Assert.IsNotNull(newState, "State type cannot be null.");
-            Assert.IsTrue(_stateMap.ContainsKey(newState), $"There is no state with key {newState.name}");
+            Assert.IsNotNull(newStateId, "State type cannot be null.");
+            Assert.IsTrue(_stateMap.ContainsKey(newStateId), $"There is no state with key {newStateId.name}");
 
-            if (_current != null && _current.StateId == newState)
+            if (_current != null && _current.StateId == newStateId)
             {
                 return;
             }
@@ -47,7 +47,7 @@ namespace InventoryGame.FSM
 #endif
             _current?.OnExit();
 
-            _current = _stateMap[newState];
+            _current = _stateMap[newStateId];
 #if UNITY_EDITOR
             Debug.Log($"Entering {_current.StateId.name}");
 #endif

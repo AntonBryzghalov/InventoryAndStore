@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using InventoryGame.Events;
 using InventoryGame.FSM;
 using InventoryGame.Inventory;
 using InventoryGame.Items;

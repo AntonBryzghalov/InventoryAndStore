@@ -1,3 +1,4 @@
+using InventoryGame.Events;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
 using InventoryGame.Sets;
@@ -21,7 +22,7 @@ namespace InventoryGame.Shop
         [SerializeField] private Slider itemsAmountSlider;
         [SerializeField] private Wallet playerWallet;
         [SerializeField] private InventorySO playerInventory;
-        [SerializeField] private ItemPurchasedEvent itemPurchasedEvent;
+        [SerializeField] private InventoryItemEvent itemPurchasedEvent;
 
         private ItemInfo _selectedItem;
         private int _itemsLimit;
@@ -69,7 +70,7 @@ namespace InventoryGame.Shop
             foreach (var item in itemsSet.List)
             {
                 var itemView = Instantiate(itemViewPrefab, itemsParent);
-                itemView.SetItem(item);
+                itemView.Bind(item);
                 itemView.OnItemSelected += OnItemSelected;
             }
         }
@@ -77,7 +78,7 @@ namespace InventoryGame.Shop
         private void OnItemSelected(ItemInfo item)
         {
             _selectedItem = item;
-            selectedItemView.SetItem(item);
+            selectedItemView.Bind(item);
             purchaseConfirmationPopup.SetActive(true);
             UpdateSlider(Mathf.Min(_itemsLimit, playerWallet.GoldAmount / item.BasePrice));
         }

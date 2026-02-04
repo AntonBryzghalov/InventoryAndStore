@@ -18,7 +18,7 @@ namespace InventoryGame.UI
     
         public event Action<ItemInfo> OnItemSelected;
 
-        public void SetItem(ItemInfo itemInfo)
+        public void Bind(ItemInfo itemInfo)
         {
             Assert.IsNotNull(itemInfo);
             _item = itemInfo;

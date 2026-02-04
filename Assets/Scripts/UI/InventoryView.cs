@@ -1,13 +1,17 @@
 using System.Collections.Generic;
+using InventoryGame.Events;
+using InventoryGame.Inventory;
+using InventoryGame.Shop;
 using UnityEngine;
 
-namespace InventoryGame.Inventory
+namespace InventoryGame.UI
 {
     public class InventoryView : MonoBehaviour
     {
         [SerializeField] private InventorySO inventory;
         [SerializeField] private InventoryItemView itemViewPrefab;
         [SerializeField] private Transform itemViewsContainer;
+        [SerializeField] private InventoryItemEvent itemSelectedEvent;
 
         private readonly List<InventoryItemView> _views = new();
 
@@ -32,6 +36,7 @@ namespace InventoryGame.Inventory
             {
                 var view = Instantiate(itemViewPrefab, itemViewsContainer);
                 _views.Add(view);
+                view.OnItemSelected += OnItemSelected;
             }
 
             // Bind data
@@ -44,9 +49,15 @@ namespace InventoryGame.Inventory
             // Destroy redundant views
             for (int i = _views.Count - 1; i >= requiredCount; i--)
             {
+                _views[i].OnItemSelected -= OnItemSelected;
                 Destroy(_views[i].gameObject);
                 _views.RemoveAt(i);
             }
+        }
+
+        private void OnItemSelected(InventoryItem inventoryItem)
+        {
+            itemSelectedEvent?.Invoke(inventoryItem);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using InventoryGame.Events;
 using InventoryGame.FSM;
 using InventoryGame.Inventory;
 using InventoryGame.Items;
@@ -33,7 +34,7 @@ namespace InventoryGame.GameLoop
             playerWallet.GoldAmount += config.GoldGivenEachCycle;
             aiWallet.GoldAmount += config.GoldGivenEachCycle;
             UpdateItemsLeftToBuyText(0);
-            basicItemsShop.SetItemsLimit(config.BasicItemsToBuy);
+            basicItemsShop.SetItemsLimit(config.RoundsPerGame);
 
             itemPurchasedEvent.AddListener(OnItemPurchased);
         }
@@ -48,7 +49,7 @@ namespace InventoryGame.GameLoop
 
         private void BuyBasicItemsForAI()
         {
-            var itemsAmount = config.BasicItemsToBuy;
+            var itemsAmount = config.RoundsPerGame;
             for (int i = 0; i < itemsAmount; i++)
             {
                 var itemType = ShopItems[Random.Range(0, ShopItems.Count)];
@@ -63,7 +64,7 @@ namespace InventoryGame.GameLoop
                 .Where(item => ShopItems.Contains(item.ItemInfo))
                 .Sum(item => item.Quantity);
 
-            var itemsLeftToBuy = config.BasicItemsToBuy - basicItemsBought;
+            var itemsLeftToBuy = config.RoundsPerGame - basicItemsBought;
             if (itemsLeftToBuy <= 0)
             {
                 fsm.SwitchTo(nextState);

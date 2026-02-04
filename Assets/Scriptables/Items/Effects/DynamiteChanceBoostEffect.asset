@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7861822b7ddf6ab468aaa6db6de680f7, type: 3}
-  m_Name: Unknown_Item
+  m_Script: {fileID: 11500000, guid: 81768abde7f45ff4a864aaaa701a02cc, type: 3}
+  m_Name: DynamiteChanceBoostEffect
   m_EditorClassIdentifier: 
-  itemName: ???
-  description: Who knows what is there
-  sprite: {fileID: 21300000, guid: c54f984ac3a6b0243bc00ac0948393b1, type: 3}
-  basePrice: 0
+  amount: 0.15

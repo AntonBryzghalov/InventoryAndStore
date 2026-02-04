@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ShopBasicItemsSet
   m_EditorClassIdentifier: 
   list:
-  - {fileID: 11400000, guid: 51165e7f0b3e37c40a706a3794ec22d2, type: 2}
-  - {fileID: 11400000, guid: aac0ce7a899cb23449fba05eb86a2d09, type: 2}
-  - {fileID: 11400000, guid: 88edd7a219743ad48ba7180a460a52b9, type: 2}
+  - {fileID: 11400000, guid: ff3258ac3b90659448b9b2a1d8651a43, type: 2}
+  - {fileID: 11400000, guid: 11125ac2a8cb8c945836f2378e9472dd, type: 2}
+  - {fileID: 11400000, guid: fe7d1d63195070c4abf61af857cfa512, type: 2}

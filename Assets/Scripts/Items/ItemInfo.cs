@@ -3,7 +3,7 @@ using UnityEngine;
 namespace InventoryGame.Items
 {
     [CreateAssetMenu(fileName = "ItemInfo", menuName = "Inventory Game/ItemInfo")]
-    public class ItemInfo : ScriptableObject
+    public abstract class ItemInfo : ScriptableObject
     {
         [SerializeField] private string itemName;
         [SerializeField] private string description;
